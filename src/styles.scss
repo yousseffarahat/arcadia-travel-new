@@ -2,6 +2,92 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+/* Animation classes for PrimeNG's AnimateOnScroll */
+.animate-fadein {
+  animation: fadein 0.5s;
+}
+
+.animate-fadeout {
+  animation: fadeout 0.5s;
+}
+
+.animate-fadeinleft {
+  animation: fadeinleft 0.5s;
+}
+
+.animate-fadeoutleft {
+  animation: fadeoutleft 0.5s;
+}
+
+.animate-fadeinright {
+  animation: fadeinright 0.5s;
+}
+
+.animate-fadeoutright {
+  animation: fadeoutright 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeinleft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeoutleft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes fadeinright {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeoutright {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
 
 /* PrimeNG Component Overrides */
 :root {

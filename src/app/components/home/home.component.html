@@ -14,14 +14,16 @@
   <!-- Main Content -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Escape to Your Dream Destinations</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Discover the world's most popular vacation spots and create unforgettable memories.</p>
+      <h2 class="section-title">Escape to Your Dream Destinations</h2>
+      <p class="section-subtitle">Discover the world's most popular vacation spots and create unforgettable memories.</p>
       <div class="masonry-grid">
-        <div class="destination-card" *ngFor="let destination of featuredDestinations">
-          <img [src]="destination.image" 
-               [alt]="destination.name" 
-               class="destination-img" 
-               (error)="handleImageError($event)">
+        <div class="destination-card" enterClass="animate-fadein" leaveClass="animate-fadeout" *ngFor="let destination of featuredDestinations">
+          <div class="destination-image-container">
+            <img [src]="destination.image" 
+                 [alt]="destination.name" 
+                 class="destination-img" 
+                 (error)="handleImageError($event)">
+          </div>
           <div class="destination-overlay">
             <div class="destination-title">{{ destination.name }}, {{ destination.location }}</div>
             <button class="destination-btn">
@@ -36,13 +38,10 @@
   <!-- Popular Destinations Section -->
   <section class="section destinations-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll
-        enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000"
-        leaveClass="animate-leave fade-out-0">Escape to Top Vacation Destinations</h2>
-      <p class="section-subtitle" pAnimateOnScroll  enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000"
-      leaveClass="animate-leave fade-out-0">Discover the world's most popular vacation spots, from tropical beaches to vibrant cityscapes, perfect for creating unforgettable memories</p>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Escape to Top Vacation Destinations</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Discover the world's most popular vacation spots, from tropical beaches to vibrant cityscapes, perfect for creating unforgettable memories</p>
       
-      <div pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+      <div pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">
         <p-carousel [value]="featuredDestinations" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="[
             {
               breakpoint: '1024px',
@@ -82,11 +81,11 @@
   <!-- Why Choose Us Section -->
   <section class="section why-us-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Why Choose Arcadia Travel</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Experience the difference with our premium travel services</p>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Why Choose Arcadia Travel</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Experience the difference with our premium travel services</p>
       
       <div class="features">
-        <div class="feature" pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft">
+        <div class="feature" pAnimateOnScroll enterClass="animate-fadeinleft" leaveClass="animate-fadeoutleft">
           <div class="feature-icon">
             <i class="pi pi-check-circle"></i>
           </div>
@@ -94,7 +93,7 @@
           <p class="feature-text">We offer competitive prices on our 100,000+ destinations with no hidden fees.</p>
         </div>
         
-        <div class="feature" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+        <div class="feature" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">
           <div class="feature-icon">
             <i class="pi pi-heart"></i>
           </div>
@@ -102,7 +101,7 @@
           <p class="feature-text">Tailored travel experiences based on your preferences and interests.</p>
         </div>
         
-        <div class="feature" pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright">
+        <div class="feature" pAnimateOnScroll enterClass="animate-fadeinright" leaveClass="animate-fadeoutright">
           <div class="feature-icon">
             <i class="pi pi-clock"></i>
           </div>
@@ -116,8 +115,8 @@
   <!-- Partners Section with Infinite Scroll -->
   <section class="partners-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Our Trusted Partners</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">We collaborate with the world's leading travel and hospitality brands</p>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Our Trusted Partners</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">We collaborate with the world's leading travel and hospitality brands</p>
     </div>
     
     <div class="logos-container">
