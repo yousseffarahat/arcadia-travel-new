@@ -1,0 +1,19 @@
+<div class="header-container">
+  <div class="header">
+    <div class="header-logo">
+      <a routerLink="/">
+        <span class="logo-icon">G</span>
+        <span class="logo-text">Genesis</span>
+      </a>
+    </div>
+    <div class="header-nav">
+      <p-menubar [model]="items" styleClass="header-menubar">
+        <ng-template pTemplate="end">
+          <button pButton label="Sign Up" icon="pi pi-user" 
+            [ngClass]="{'p-button-rounded': true, 'p-button-outlined p-button-light': true}">
+          </button>
+        </ng-template>
+      </p-menubar>
+    </div>
+  </div>
+</div> 

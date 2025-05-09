@@ -1,0 +1,168 @@
+.header-container {
+  background-color: transparent !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease-in-out;
+  
+  &.transparent-header {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    flex-direction: column;
+  }
+}
+
+.header-logo {
+  a {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .logo-icon {
+    background-color: #2563eb;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+  }
+  
+  .logo-text {
+    transition: color 0.3s ease;
+    
+    &.light-text {
+      color: white;
+    }
+  }
+}
+
+.header-nav {
+  flex: 1;
+  max-width: 800px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+:host ::ng-deep {
+  .header-menubar {
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+
+    .p-menubar-root-list {
+      margin-left: 2rem;
+
+      @media (max-width: 960px) {
+        margin-left: 0;
+      }
+    }
+
+    .p-menuitem-link {
+      padding: 0.75rem 1rem;
+      font-weight: 500;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+      }
+
+      .p-menuitem-text {
+        color: white;
+      }
+    }
+
+    .p-menubar-end {
+      margin-left: auto;
+    }
+    
+    .p-menubar-button {
+      color: white;
+    }
+  }
+  
+  .light-menu {
+    .p-menuitem-link {
+      .p-menuitem-text {
+        color: white;
+      }
+      
+      .p-menuitem-icon {
+        color: white;
+      }
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+    
+    .p-menubar-button {
+      color: white;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+    
+    // Style the mobile menu panel
+    .p-menubar-root-list {
+      @media screen and (max-width: 960px) {
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        
+        .p-menuitem-link {
+          .p-menuitem-text,
+          .p-menuitem-icon {
+            color: white;
+          }
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+    }
+  }
+  
+  .p-button-light {
+    color: white;
+    border-color: white;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: white;
+      color: white;
+    }
+  }
+} 

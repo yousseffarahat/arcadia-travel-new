@@ -1,0 +1,149 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Wanderlust Awaits</h1>
+      <h2 class="hero-subtitle">Genesis</h2>
+      <div class="hero-search">
+        <!-- Hide search component temporarily -->
+        <!-- <app-search></app-search> -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Escape to Your Dream Destinations</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Discover the world's most popular vacation spots and create unforgettable memories.</p>
+      <div class="masonry-grid">
+        <div class="destination-card" *ngFor="let destination of featuredDestinations">
+          <img [src]="destination.image" 
+               [alt]="destination.name" 
+               class="destination-img" 
+               (error)="handleImageError($event)">
+          <div class="destination-overlay">
+            <div class="destination-title">{{ destination.name }}, {{ destination.location }}</div>
+            <button class="destination-btn">
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Popular Destinations Section -->
+  <section class="section destinations-section">
+    <div class="container">
+      <h2 class="section-title" pAnimateOnScroll
+        enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000"
+        leaveClass="animate-leave fade-out-0">Escape to Top Vacation Destinations</h2>
+      <p class="section-subtitle" pAnimateOnScroll  enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000"
+      leaveClass="animate-leave fade-out-0">Discover the world's most popular vacation spots, from tropical beaches to vibrant cityscapes, perfect for creating unforgettable memories</p>
+      
+      <div pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+        <p-carousel [value]="featuredDestinations" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="[
+            {
+              breakpoint: '1024px',
+              numVisible: 3,
+              numScroll: 1
+            },
+            {
+              breakpoint: '768px',
+              numVisible: 2,
+              numScroll: 1
+            },
+            {
+              breakpoint: '560px',
+              numVisible: 1,
+              numScroll: 1
+            }
+          ]">
+          <ng-template let-destination pTemplate="item">
+            <div class="carousel-item">
+              <div class="card">
+                <img [src]="destination.image" 
+                     [alt]="destination.name" 
+                     class="card-img" 
+                     (error)="handleImageError($event)">
+                <div class="card-content">
+                  <h3 class="card-title">{{ destination.name }}</h3>
+                  <p class="card-text">{{ destination.location }}</p>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Why Choose Us Section -->
+  <section class="section why-us-section">
+    <div class="container">
+      <h2 class="section-title" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Why Choose Arcadia Travel</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Experience the difference with our premium travel services</p>
+      
+      <div class="features">
+        <div class="feature" pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft">
+          <div class="feature-icon">
+            <i class="pi pi-check-circle"></i>
+          </div>
+          <h3 class="feature-title">Best Price Guarantee</h3>
+          <p class="feature-text">We offer competitive prices on our 100,000+ destinations with no hidden fees.</p>
+        </div>
+        
+        <div class="feature" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+          <div class="feature-icon">
+            <i class="pi pi-heart"></i>
+          </div>
+          <h3 class="feature-title">Personalized Experience</h3>
+          <p class="feature-text">Tailored travel experiences based on your preferences and interests.</p>
+        </div>
+        
+        <div class="feature" pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright">
+          <div class="feature-icon">
+            <i class="pi pi-clock"></i>
+          </div>
+          <h3 class="feature-title">24/7 Support</h3>
+          <p class="feature-text">Our travel experts are available around the clock to assist you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section with Infinite Scroll -->
+  <section class="partners-section">
+    <div class="container">
+      <h2 class="section-title" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">Our Trusted Partners</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">We collaborate with the world's leading travel and hospitality brands</p>
+    </div>
+    
+    <div class="logos-container">
+      <div class="logos-scroll">
+        <!-- First set of logos -->
+        <div class="logos-wrapper">
+          <div class="logo-item" *ngFor="let partner of partners">
+            <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
+            <p class="partner-name">{{ partner.name }}</p>
+          </div>
+        </div>
+        <!-- Second set of logos (exact duplicate) -->
+        <div class="logos-wrapper">
+          <div class="logo-item" *ngFor="let partner of partners">
+            <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
+            <p class="partner-name">{{ partner.name }}</p>
+          </div>
+        </div>
+        <!-- Third set for extra smoothness -->
+        <div class="logos-wrapper">
+          <div class="logo-item" *ngFor="let partner of partners">
+            <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
+            <p class="partner-name">{{ partner.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> 

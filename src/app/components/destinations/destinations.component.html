@@ -1,0 +1,58 @@
+<div class="destinations-container">
+  <div class="destinations-hero">
+    <div class="container">
+      <h1 class="destinations-title">Explore Top Destinations</h1>
+      <p class="destinations-subtitle">Discover the world's most popular vacation spots and create unforgettable memories</p>
+    </div>
+  </div>
+  
+  <div class="destinations-content">
+    <div class="container">
+      <div class="destinations-search">
+        <app-search></app-search>
+      </div>
+      
+      <div class="destinations-grid">
+        <p-card *ngFor="let destination of destinations" styleClass="destination-card">
+          <ng-template pTemplate="header">
+            <div class="destination-image">
+              <img [src]="destination.image" [alt]="destination.name">
+              <div class="destination-price">{{ destination.price }}</div>
+            </div>
+          </ng-template>
+          
+          <div class="destination-meta">
+            <div class="destination-rating">
+              <i class="pi pi-star-fill" *ngFor="let star of [1,2,3,4,5]" 
+                 [ngClass]="{'active': star <= destination.rating}"></i>
+              <span>{{ destination.rating }}</span>
+            </div>
+          </div>
+          
+          <div class="destination-info">
+            <h3 class="destination-name">{{ destination.name }}</h3>
+            <p class="destination-location">
+              <i class="pi pi-map-marker"></i> {{ destination.location }}
+            </p>
+            <p class="destination-description">{{ destination.description }}</p>
+          </div>
+          
+          <ng-template pTemplate="footer">
+            <div class="destination-actions">
+              <button pButton label="View Details" icon="pi pi-search" class="p-button-outlined"></button>
+              <button pButton label="Book Now" icon="pi pi-calendar-plus"></button>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+      
+      <div class="pagination">
+        <button pButton icon="pi pi-chevron-left" class="p-button-rounded p-button-text"></button>
+        <button pButton label="1" class="p-button-rounded p-button-text p-button-info"></button>
+        <button pButton label="2" class="p-button-rounded p-button-text"></button>
+        <button pButton label="3" class="p-button-rounded p-button-text"></button>
+        <button pButton icon="pi pi-chevron-right" class="p-button-rounded p-button-text"></button>
+      </div>
+    </div>
+  </div>
+</div> 
