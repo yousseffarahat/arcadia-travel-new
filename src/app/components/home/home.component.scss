@@ -1,10 +1,7 @@
 .hero {
   height: 100vh;
   min-height: 600px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/assets/images/landing-page-background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/assets/images/landing-page-background.jpg') center/cover no-repeat;
   position: relative;
   display: flex;
   align-items: center;
@@ -15,24 +12,18 @@
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
     z-index: 0;
   }
   
-  @media (max-width: 768px) {
-    min-height: 500px;
-  }
+  @media (max-width: 768px) { min-height: 500px; }
 }
 
 .hero-content {
   max-width: 1200px;
   width: 100%;
   padding: 0 20px;
-  margin-top: 0;
   z-index: 1;
   position: relative;
   display: flex;
@@ -46,11 +37,9 @@
   font-weight: 700;
   margin-bottom: 0.5rem;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-  color: #ffffff;
+  color: #fff;
   
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
+  @media (max-width: 768px) { font-size: 2.5rem; }
 }
 
 .hero-subtitle {
@@ -58,14 +47,12 @@
   font-weight: 700;
   opacity: 0.9;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-  margin-top: -2rem;
-  margin-bottom: 3rem;
-  color: #ffffff;
+  margin: -2rem 0 3rem;
+  color: #fff;
   
   @media (max-width: 768px) {
     font-size: 5rem;
-    margin-top: -1rem;
-    margin-bottom: 2rem;
+    margin: -1rem 0 2rem;
   }
 }
 
@@ -90,9 +77,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
+  @media (max-width: 768px) { flex-direction: column; }
 }
 
 .search-field {
@@ -107,7 +92,7 @@
   label {
     display: flex;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 4px;
     border: 1px solid #e5e7eb;
     padding: 0.5rem 1rem;
@@ -134,15 +119,29 @@
   }
 }
 
+.section {
+  padding: 5rem 0;
+  overflow: hidden;
+  
+  @media (max-width: 768px) { padding: 3rem 0; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
+img { max-width: 100%; height: auto; }
+
 .destinations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
   
-  @media (max-width: 576px) {
-    grid-template-columns: 1fr;
-  }
+  @media (max-width: 576px) { grid-template-columns: 1fr; }
 }
 
 .destination-card {
@@ -161,6 +160,8 @@
   &:hover {
     transform: scale(1.02);
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    
+    .destination-img { transform: scale(1.05); }
   }
 }
 
@@ -169,10 +170,6 @@
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
-}
-
-.destination-card:hover .destination-img {
-  transform: scale(1.05);
 }
 
 .destination-overlay {
@@ -216,52 +213,18 @@
     transform: translateY(-2px);
     line-height: 1;
   }
+  
+  &:hover {
+    background: rgba(255,255,255,0.4);
+    transform: translateX(3px);
+  }
 }
 
-.destination-btn:hover {
-  background: rgba(255,255,255,0.4);
-  transform: translateX(3px);
-}
-
-// Add RTL-specific hover effect
 :host-context([dir="rtl"]) .destination-btn:hover {
   transform: translateX(-3px);
 }
 
-.destinations-section {
-  background-color: #f9fafb;
-}
-
-.carousel-item {
-  padding: 1rem;
-}
-
-:host ::ng-deep {
-  .p-carousel {
-    .p-carousel-content {
-      .p-carousel-prev,
-      .p-carousel-next {
-        background-color: white;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        margin: 0 0.5rem;
-        
-        &:hover {
-          background-color: #f1f5f9;
-        }
-        
-        &:focus {
-          box-shadow: none;
-        }
-      }
-    }
-  }
-}
-
-.why-us-section {
-  background-color: white;
-}
+.why-us-section { background-color: white; }
 
 .features {
   display: flex;
@@ -283,55 +246,33 @@
   border-radius: 8px;
   transition: transform 0.3s ease;
   
-  &:hover {
-    transform: translateY(-10px);
-  }
-}
-
-.feature-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background-color: #e0f2fe;
-  border-radius: 50%;
-  margin-bottom: 1.5rem;
+  &:hover { transform: translateY(-10px); }
   
-  i {
-    font-size: 1.5rem;
-    color: #2563eb;
+  &-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #e0f2fe;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    
+    i {
+      font-size: 1.5rem;
+      color: #2563eb;
+    }
   }
-}
-
-.feature-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.feature-text {
-  color: #6b7280;
-  line-height: 1.6;
-}
-
-.animated-image {
-  width: 180px;
-  max-width: 30vw;
-  margin: 0 1.5rem 1.5rem 1.5rem;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.center-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-  padding: 2rem 2.5rem;
-  max-width: 400px;
-  margin: 2rem auto 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 2;
+  
+  &-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  &-text {
+    color: #6b7280;
+    line-height: 1.6;
+  }
 }
 
 .masonry-grid {
@@ -340,24 +281,10 @@
   margin: 2rem 0;
   width: 100%;
   
-  @media (max-width: 992px) {
-    column-count: 2;
-  }
-  
-  @media (max-width: 576px) {
-    column-count: 1;
-  }
+  @media (max-width: 992px) { column-count: 2; }
+  @media (max-width: 576px) { column-count: 1; }
 }
 
-.card-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-// Partners Section
 .partners-section {
   padding: 4rem 0;
   background-color: #f8fafc;
@@ -377,13 +304,14 @@
   white-space: nowrap;
   will-change: transform;
   animation: scroll 30s linear infinite;
-  /* Using transform3d to force GPU acceleration */
   transform: translate3d(0, 0, 0);
   
   &.rtl-scroll {
     animation: scroll-rtl 30s linear infinite;
     transform: translate3d(0, 0, 0);
   }
+  
+  &:hover { animation-play-state: paused; }
 }
 
 .logos-wrapper {
@@ -409,11 +337,11 @@
   filter: grayscale(100%);
   opacity: 0.7;
   transition: all 0.3s ease;
-}
-
-.logo-item:hover .partner-logo {
-  filter: grayscale(0%);
-  opacity: 1;
+  
+  .logo-item:hover & {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
 }
 
 .partner-name {
@@ -424,121 +352,61 @@
 }
 
 @keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333%); }
 }
 
 @keyframes scroll-rtl {
-  from {
-    transform: translateX(0);
+  from { transform: translateX(0); }
+  to { transform: translateX(33.333%); }
+}
+
+.contact-form .field {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
   }
-  to {
-    transform: translateX(33.333%);
+
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    }
+
+    &.ng-invalid.ng-dirty { border-color: #ef4444; }
   }
-}
 
-// Add hover pause effect
-.logos-scroll:hover {
-  animation-play-state: paused;
-}
+  .input-wrapper { position: relative; width: 100%; }
 
-.section {
-  padding: 5rem 0;
-  overflow: hidden; /* Add this to prevent horizontal scrolling issues */
-  
-  @media (max-width: 768px) {
-    padding: 3rem 0;
-  }
-}
-
-/* Add this to ensure container has proper width */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-  width: 100%;
-}
-
-/* Add this to ensure images display properly */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Contact Form Styles */
-.contact-form {
-  .field {
-    margin-bottom: 1.5rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #374151;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.375rem;
-      font-size: 1rem;
-      transition: border-color 0.15s ease-in-out;
-
-      &:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
-      }
-
-      &.ng-invalid.ng-dirty {
-        border-color: #ef4444;
-      }
-    }
-
-    .input-wrapper {
-      position: relative;
-      width: 100%;
-    }
-
-    small.p-error {
-      color: #ef4444;
-      font-size: 0.875rem;
-      margin-top: 0.25rem;
-      display: block;
-    }
+  small.p-error {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
   }
 }
 
-/* Fix for PrimeNG components */
 :host ::ng-deep {
   .p-dialog {
-    .p-dialog-header {
-      padding: 1.5rem;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .p-dialog-content {
-      padding: 1.5rem;
-      overflow: visible !important;
-    }
-
-    .p-dialog-footer {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid #e5e7eb;
-      text-align: right;
-    }
+    .p-dialog-header { padding: 1.5rem; border-bottom: 1px solid #e5e7eb; }
+    .p-dialog-content { padding: 1.5rem; overflow: visible !important; }
+    .p-dialog-footer { padding: 1rem 1.5rem; border-top: 1px solid #e5e7eb; text-align: right; }
   }
 
-  /* Fix for datepicker icon */
   .input-wrapper {
-    .p-datepicker, .p-select, .p-inputmask {
-      width: 100%;
-    }
+    .p-datepicker, .p-select, .p-inputmask { width: 100%; }
 
     .p-datepicker-trigger, .p-select-trigger {
       position: absolute !important;
@@ -554,91 +422,24 @@ img {
       justify-content: center !important;
     }
 
-    .p-inputtext {
-      width: 100% !important;
-      padding-right: 3rem !important;
-    }
-    
-    .p-calendar {
-      display: block !important;
-      width: 100% !important;
-    }
-    
-    .p-datepicker-calendar-container {
-      z-index: 1000 !important;
-    }
-    
-    /* Fix for select dropdown */
-    .p-select-panel {
-      z-index: 1000 !important;
-    }
+    .p-inputtext { width: 100% !important; padding-right: 3rem !important; }
+    .p-calendar { display: block !important; width: 100% !important; }
   }
 
-  // Search form specific styles
   .search-field {
     .p-inputtext, .p-dropdown, .p-select, .p-datepicker, .p-inputnumber {
       width: 100%;
       background: transparent;
       border: none;
       border-radius: 0;
-      font-family: 'Poppins', sans-serif;
       
-      &:focus {
-        box-shadow: none;
-        outline: none;
-      }
-      
-      &:enabled:focus {
-        box-shadow: none;
-        outline: none;
-      }
+      &:focus, &:enabled:focus { box-shadow: none; outline: none; }
     }
     
-    .p-inputnumber-buttons-horizontal .p-inputnumber-input {
-      border-radius: 0;
-      border: none;
-    }
-    
-    .p-inputnumber-button-group {
-      position: absolute;
-      right: 0;
-    }
-    
-    .p-datepicker-trigger, .p-select-trigger {
-      display: none;
-    }
-    
-    .p-select-label, .p-dropdown-label {
-      padding-left: 0;
-    }
-  }
-  
-  // Fix for p-inputNumber in the dialog
-  .contact-form .input-wrapper .p-inputnumber {
-    width: 100%;
-    
-    .p-inputnumber-input {
-      width: 100%;
-      padding-right: 3rem;
-    }
-    
-    .p-inputnumber-button-group {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .p-button.p-inputnumber-button {
-      flex: 1;
-      width: 2rem;
-      padding: 0;
-    }
+    .p-datepicker-trigger, .p-select-trigger { display: none; }
+    .p-select-label, .p-dropdown-label { padding-left: 0; }
   }
 
-  /* Custom ScrollTop styling */
   .custom-scrolltop {
     width: 3rem;
     height: 3rem;
@@ -646,187 +447,9 @@ img {
     background-color: var(--primary-color);
     transition: background-color 0.3s;
     
-    &:hover {
-      background-color: var(--primary-color-hover);
-    }
-    
-    .p-scrolltop-icon {
-      font-size: 1.5rem;
-      color: #ffffff;
-    }
+    &:hover { background-color: var(--primary-color-hover); }
+    .p-scrolltop-icon { font-size: 1.5rem; color: #ffffff; }
   }
   
-  // RTL support for ScrollTop
-  [dir="rtl"] .custom-scrolltop {
-    right: auto;
-    left: 20px;
-  }
-}
-
-/* Reviews Section */
-.reviews-section {
-  background-color: #f8f9fa;
-  padding: 4rem 0;
-}
-
-.review-item {
-  padding: 1.5rem;
-  margin: 0.5rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 450px;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.review-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.reviewer-img-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.reviewer-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #e0e7ff;
-}
-
-.review-info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.review-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.reviewer-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.reviewer-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0;
-  color: #1e293b;
-}
-
-.reviewer-location {
-  font-size: 0.9rem;
-  color: #64748b;
-  margin: 0.2rem 0 0 0;
-}
-
-.review-rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.stars {
-  display: flex;
-}
-
-.star {
-  margin-right: 2px;
-  
-  i {
-    font-size: 1.2rem;
-  }
-  
-  i.pi-star-fill {
-    color: #facc15;
-  }
-  
-  i.pi-star {
-    color: #cbd5e1;
-  }
-}
-
-.review-quote {
-  position: relative;
-  padding: 1rem 0;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.quote-icon {
-  color: #e0e7ff;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.review-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #4b5563;
-  font-style: italic;
-  margin: 0;
-  max-width: 90%;
-}
-
-/* Override PrimeNG Carousel styles for reviews */
-:host ::ng-deep .reviews-section {
-  .p-carousel .p-carousel-indicators {
-    margin-top: 1.5rem;
-  }
-  
-  .p-carousel .p-carousel-indicators .p-carousel-indicator button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #cbd5e1;
-  }
-  
-  .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
-    background-color: #3b82f6;
-  }
-  
-  .reviews-carousel {
-    .p-carousel-container {
-      padding-bottom: 2rem;
-    }
-    
-    .p-carousel-items-container {
-      height: 100%;
-    }
-    
-    .p-carousel-items-content {
-      height: 100%;
-    }
-    
-    .p-carousel-item {
-      height: 100%;
-      padding: 0.5rem;
-    }
-  }
+  [dir="rtl"] .custom-scrolltop { right: auto; left: 20px; }
 } 

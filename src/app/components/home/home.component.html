@@ -16,8 +16,8 @@
     <!-- Partners Section with Infinite Scroll -->
     <section class="partners-section">
       <div class="container">
-        <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Our Trusted Partners' | translate }}</h2>
-        <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'We collaborate with brands' | translate }}</p>
+        <h2 class="section-title">{{ 'Our Trusted Partners' | translate }}</h2>
+        <p class="section-subtitle">{{ 'We collaborate with brands' | translate }}</p>
       </div>
       
       <div class="logos-container">
@@ -67,49 +67,6 @@
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Popular Destinations Section -->
-  <section class="section destinations-section">
-    <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Escape to Top Vacation Destinations' | translate }}</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Discover popular vacation spots' | translate }}</p>
-      
-      <div pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">
-        <p-carousel [value]="featuredDestinations" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="[
-            {
-              breakpoint: '1024px',
-              numVisible: 3,
-              numScroll: 1
-            },
-            {
-              breakpoint: '768px',
-              numVisible: 2,
-              numScroll: 1
-            },
-            {
-              breakpoint: '560px',
-              numVisible: 1,
-              numScroll: 1
-            }
-          ]">
-          <ng-template let-destination pTemplate="item">
-            <div class="carousel-item">
-              <div class="card">
-                <img [src]="destination.image" 
-                     [alt]="destination.name | translate" 
-                     class="card-img" 
-                     (error)="handleImageError($event)">
-                <div class="card-content">
-                  <h3 class="card-title">{{ destination.name | translate }}</h3>
-                  <p class="card-text">{{ destination.location | translate }}</p>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </p-carousel>
       </div>
     </div>
   </section>

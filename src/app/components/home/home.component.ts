@@ -73,7 +73,7 @@ interface Review {
     TranslatePipe,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  styleUrls: ['./home.component.scss', './reviews.scss'],
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   featuredDestinations: Destination[] = [];
