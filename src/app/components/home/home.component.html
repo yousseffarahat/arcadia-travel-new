@@ -5,8 +5,10 @@
       <h1 class="hero-title">Wanderlust Awaits</h1>
       <h2 class="hero-subtitle">Genesis</h2>
       <div class="hero-search">
-        <!-- Hide search component temporarily -->
-        <!-- <app-search></app-search> -->
+        <app-search 
+          [destinations]="destinations" 
+          (searchSubmitted)="openContactDialog($event.destination, [$event.arrivalDate, $event.departureDate], $event.guests)">
+        </app-search>
       </div>
     </div>
   </section>
@@ -17,7 +19,7 @@
       <h2 class="section-title">Escape to Your Dream Destinations</h2>
       <p class="section-subtitle">Discover the world's most popular vacation spots and create unforgettable memories.</p>
       <div class="masonry-grid">
-        <div class="destination-card" enterClass="animate-fadein" leaveClass="animate-fadeout" *ngFor="let destination of featuredDestinations">
+        <div class="destination-card" enterClass="animate-fadein" leaveClass="animate-fadeout" *ngFor="let destination of featuredDestinations" (click)="openContactDialog(destination)">
           <div class="destination-image-container">
             <img [src]="destination.image" 
                  [alt]="destination.name" 
@@ -145,4 +147,86 @@
       </div>
     </div>
   </section>
-</div> 
+</div>
+
+<p-dialog 
+  header="Contact Us" 
+  [(visible)]="contactDialogVisible" 
+  [modal]="true" 
+  [style]="{width: '450px'}"
+  [draggable]="false" 
+  [resizable]="false"
+  (onHide)="closeContactDialog()">
+  <form [formGroup]="contactForm" class="contact-form">
+    <div class="field">
+      <label for="destination">Destination</label>
+      <div class="input-wrapper">
+        <p-select 
+          id="destination"
+          [options]="destinations"
+          formControlName="destination"
+          optionLabel="label"
+          [filter]="true"
+          filterBy="label"
+          placeholder="Select a destination"
+          [showClear]="true"
+          styleClass="w-full">
+        </p-select>
+      </div>
+      <small class="p-error" *ngIf="contactForm.get('destination')?.invalid && contactForm.get('destination')?.touched">Please select a destination</small>
+    </div>
+
+    <div class="field">
+      <label for="dateRange">Travel Dates</label>
+      <div class="input-wrapper">
+        <p-datepicker 
+          id="dateRange"
+          formControlName="dateRange"
+          selectionMode="range"
+          [readonlyInput]="true"
+          [showButtonBar]="true"
+          [showIcon]="true"
+          [minDate]="minDate"
+          placeholder="Select travel dates"
+          styleClass="w-full">
+        </p-datepicker>
+      </div>
+      <small class="p-error" *ngIf="contactForm.get('dateRange')?.invalid && contactForm.get('dateRange')?.touched">Please select travel dates</small>
+    </div>
+    
+    <div class="field">
+      <label for="travelers">Number of Guests</label>
+      <div class="input-wrapper">
+        <input id="travelers" type="number" pInputText formControlName="travelers" min="1" max="10" class="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('travelers')?.invalid && contactForm.get('travelers')?.touched}">
+      </div>
+      <small class="p-error" *ngIf="contactForm.get('travelers')?.invalid && contactForm.get('travelers')?.touched">Please enter number of guests</small>
+    </div>
+
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" type="text" pInputText formControlName="name" class="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('name')?.invalid && contactForm.get('name')?.touched}">
+      <small class="p-error" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">Name is required</small>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" pInputText formControlName="email" class="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}">
+      <small class="p-error" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+        {{ contactForm.get('email')?.errors?.['required'] ? 'Email is required' : 'Please enter a valid email' }}
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone</label>
+      <div class="input-wrapper">
+        <p-inputMask id="phone" formControlName="phone" mask="(999) 999-9999" placeholder="(555) 555-5555" styleClass="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched}"></p-inputMask>
+      </div>
+      <small class="p-error" *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">Phone number is required</small>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeContactDialog()"></button>
+    <button pButton pRipple label="Send" icon="pi pi-check" class="p-button-text" (click)="submitContactForm()" [disabled]="!contactForm.valid"></button>
+  </ng-template>
+</p-dialog> 

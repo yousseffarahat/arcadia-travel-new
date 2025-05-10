@@ -5,13 +5,24 @@ import {
   PLATFORM_ID,
   Inject,
 } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputMaskModule } from 'primeng/inputmask';
+import { SelectModule } from 'primeng/select';
+import { DatePickerModule } from 'primeng/datepicker';
+import { SearchComponent } from '../search/search.component';
 
 interface Destination {
   id: number;
@@ -32,11 +43,18 @@ interface Partner {
   standalone: true,
   imports: [
     NgFor,
+    CommonModule,
     RouterLink,
     CarouselModule,
     ButtonModule,
     AnimateOnScrollModule,
     ReactiveFormsModule,
+    DialogModule,
+    InputTextModule,
+    InputMaskModule,
+    SelectModule,
+    DatePickerModule,
+    SearchComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -46,14 +64,41 @@ export class HomeComponent implements OnInit, AfterViewInit {
   partners: Partner[] = [];
   defaultImagePath = 'assets/images/default.jpg';
   isBrowser: boolean;
+  contactDialogVisible = false;
+  contactForm: FormGroup;
+  searchForm: FormGroup;
+  selectedDestination: Destination | null = null;
+  destinations: { label: string; value: Destination }[] = [];
+  minDate: Date = new Date();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private fb: FormBuilder
+  ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
+
+    // Initialize contact form
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      destination: [null, [Validators.required]],
+      dateRange: [null, [Validators.required]],
+      travelers: [2, [Validators.required, Validators.min(1)]],
+    });
+
+    // Initialize search form
+    this.searchForm = this.fb.group({
+      destination: [null, [Validators.required]],
+      dateRange: [null, [Validators.required]],
+      travelers: [2, [Validators.required, Validators.min(1)]],
+    });
   }
 
   ngOnInit() {
     this.loadDestinations();
     this.loadPartners();
+    this.prepareDestinationsDropdown();
   }
 
   ngAfterViewInit() {
@@ -209,5 +254,107 @@ export class HomeComponent implements OnInit, AfterViewInit {
         logo: 'assets/images/plane.png',
       },
     ];
+  }
+
+  prepareDestinationsDropdown() {
+    this.destinations = this.featuredDestinations.map((dest) => ({
+      label: `${dest.name}, ${dest.location}`,
+      value: dest,
+    }));
+  }
+
+  openContactDialog(
+    destination: any = null,
+    dateRange: Date[] | null = null,
+    guests: number | null = null
+  ) {
+    console.log('openContactDialog called with:', {
+      destination,
+      dateRange,
+      guests,
+    });
+
+    // Handle different types of destination input
+    if (typeof destination === 'string') {
+      // If destination is a string (from old search component), find the matching destination object
+      const destinationName = destination.split(',')[0].trim();
+      const matchingDest = this.featuredDestinations.find(
+        (dest) => dest.name.toLowerCase() === destinationName.toLowerCase()
+      );
+
+      if (matchingDest) {
+        this.selectedDestination = matchingDest;
+      } else {
+        // If no matching destination found, use the first one as default
+        this.selectedDestination =
+          this.featuredDestinations.length > 0
+            ? this.featuredDestinations[0]
+            : null;
+      }
+    } else if (destination && typeof destination === 'object') {
+      // If destination is already an object, use it directly
+      this.selectedDestination = destination;
+    } else {
+      // Default to first destination if none provided
+      this.selectedDestination =
+        this.featuredDestinations.length > 0
+          ? this.featuredDestinations[0]
+          : null;
+    }
+
+    console.log('Selected destination:', this.selectedDestination);
+
+    // Default values if not provided
+    const startDate = dateRange && dateRange[0] ? dateRange[0] : new Date();
+    const endDate =
+      dateRange && dateRange[1]
+        ? dateRange[1]
+        : new Date(new Date().setDate(new Date().getDate() + 7));
+
+    // Get number of guests, default to 2
+    const numGuests = guests || 2;
+
+    // Find the matching destination in the dropdown options
+    const destinationOption = this.destinations.find(
+      (option) => option.value.id === this.selectedDestination?.id
+    );
+
+    this.contactForm.patchValue({
+      destination: destinationOption || null,
+      dateRange: [startDate, endDate],
+      travelers: numGuests,
+    });
+
+    console.log('Contact form after patch:', this.contactForm.value);
+    console.log('Setting contactDialogVisible to true');
+    this.contactDialogVisible = true;
+  }
+
+  closeContactDialog() {
+    this.contactDialogVisible = false;
+    this.contactForm.reset();
+    this.selectedDestination = null;
+  }
+
+  submitContactForm() {
+    if (this.contactForm.valid) {
+      // Here you would typically send the form data to your backend
+      console.log('Form submitted:', {
+        ...this.contactForm.value,
+        destination: this.selectedDestination,
+      });
+      this.closeContactDialog();
+    }
+  }
+
+  submitSearchForm() {
+    if (this.searchForm.valid) {
+      const formValues = this.searchForm.value;
+      this.openContactDialog(
+        formValues.destination,
+        formValues.dateRange,
+        formValues.travelers
+      );
+    }
   }
 }

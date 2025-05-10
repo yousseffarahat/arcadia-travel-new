@@ -1,6 +1,6 @@
 .search-container {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 24px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 1200px;
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     background-color: #f8fafc;
-    border-radius: 4px;
+    border-radius: 16px;
     padding: 0.5rem 1rem;
     width: 100%;
     height: 46px;
@@ -51,7 +51,7 @@
 }
 
 :host ::ng-deep {
-  .p-inputtext, .p-dropdown {
+  .p-inputtext, .p-dropdown, .p-select, .p-datepicker {
     width: 100%;
     background: transparent;
     border: none;
@@ -69,7 +69,7 @@
     }
   }
   
-  .p-calendar {
+  .p-calendar, .p-datepicker {
     width: 100%;
     
     .p-inputtext {
@@ -77,20 +77,32 @@
     }
   }
   
-  .p-dropdown {
-    .p-dropdown-label {
+  .p-dropdown, .p-select {
+    .p-dropdown-label, .p-select-label {
       padding-left: 0;
     }
   }
   
-  .p-calendar-w-btn .p-datepicker-trigger {
+  .p-calendar-w-btn .p-datepicker-trigger,
+  .p-datepicker-w-btn .p-datepicker-trigger {
     display: none;
+  }
+  
+  .p-select {
+    .p-select-label {
+      padding-left: 0;
+    }
+    
+    .p-select-clear-icon {
+      right: 0;
+    }
   }
 }
 
 .search-button {
   min-width: 120px;
   height: 46px;
+  border-radius: 16px;
   
   @media (max-width: 768px) {
     width: 100%;

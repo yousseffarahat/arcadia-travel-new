@@ -3,58 +3,45 @@
     <div class="search-field location">
       <label>
         <i class="pi pi-map-marker"></i>
-        <input 
-          pInputText 
-          type="text" 
-          formControlName="destination" 
+        <p-select
+          formControlName="destination"
+          [options]="destinations"
+          optionLabel="label"
           placeholder="Where are you going?"
-        >
+          [filter]="true"
+          filterBy="label"
+          [showClear]="true"
+        ></p-select>
       </label>
     </div>
     
     <div class="search-field date">
       <label>
         <i class="pi pi-calendar"></i>
-        <p-calendar 
-          formControlName="arrivalDate" 
-          [minDate]="minDate" 
-          placeholder="Arriving" 
+        <p-datepicker
+          formControlName="dateRange"
+          selectionMode="range"
+          [minDate]="minDate"
+          placeholder="Select travel dates"
           [showIcon]="false"
           dateFormat="dd/mm/yy"
-        ></p-calendar>
-      </label>
-    </div>
-    
-    <div class="search-field date">
-      <label>
-        <i class="pi pi-calendar"></i>
-        <p-calendar 
-          formControlName="departureDate" 
-          [minDate]="minDate" 
-          placeholder="Leaving" 
-          [showIcon]="false"
-          dateFormat="dd/mm/yy"
-        ></p-calendar>
+        ></p-datepicker>
       </label>
     </div>
     
     <div class="search-field guests">
       <label>
         <i class="pi pi-users"></i>
-        <p-dropdown 
+        <p-select 
           formControlName="guests" 
-          [options]="[
-            { label: '1 Room, 1 Guest', value: '1 Room, 1 Guest' },
-            { label: '1 Room, 2 Guests', value: '1 Room, 2 Guests' },
-            { label: '1 Room, 3 Guests', value: '1 Room, 3 Guests' },
-            { label: '2 Rooms, 4 Guests', value: '2 Rooms, 4 Guests' }
-          ]" 
+          [options]="guestOptions" 
           optionLabel="label"
-          placeholder="Guests"
-        ></p-dropdown>
+          placeholder="Number of Guests"
+          [showClear]="false"
+        ></p-select>
       </label>
     </div>
     
-    <button pButton type="submit" label="Search..." icon="pi pi-search" class="search-button"></button>
+    <button pButton type="button" (click)="search()" label="Contact Us" icon="pi pi-envelope" class="search-button"></button>
   </form>
 </div> 
