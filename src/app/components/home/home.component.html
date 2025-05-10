@@ -122,7 +122,7 @@
     </div>
     
     <div class="logos-container">
-      <div class="logos-scroll">
+      <div class="logos-scroll" [ngClass]="{'rtl-scroll': direction === 'rtl'}">
         <!-- First set of logos -->
         <div class="logos-wrapper">
           <div class="logo-item" *ngFor="let partner of partners">

@@ -223,6 +223,11 @@
   transform: translateX(3px);
 }
 
+// Add RTL-specific hover effect
+:host-context([dir="rtl"]) .destination-btn:hover {
+  transform: translateX(-3px);
+}
+
 .destinations-section {
   background-color: #f9fafb;
 }
@@ -374,6 +379,11 @@
   animation: scroll 30s linear infinite;
   /* Using transform3d to force GPU acceleration */
   transform: translate3d(0, 0, 0);
+  
+  &.rtl-scroll {
+    animation: scroll-rtl 30s linear infinite;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .logos-wrapper {
@@ -419,6 +429,15 @@
   }
   to {
     transform: translateX(-33.333%);
+  }
+}
+
+@keyframes scroll-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(33.333%);
   }
 }
 
