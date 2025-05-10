@@ -3,13 +3,16 @@
     <div class="header-logo">
       <a routerLink="/">
         <span class="logo-icon">G</span>
-        <span class="logo-text">Genesis</span>
+        <span class="logo-text">{{ 'Genesis' | translate }}</span>
       </a>
     </div>
     <div class="header-nav">
       <p-menubar [model]="items" styleClass="header-menubar">
         <ng-template pTemplate="end">
-          <button pButton label="Sign Up" icon="pi pi-user" 
+          <button pButton 
+            [label]="getLanguageButtonLabel()" 
+            [icon]="getLanguageButtonIcon()" 
+            (click)="toggleLanguage()"
             [ngClass]="{'p-button-rounded': true, 'p-button-outlined p-button-light': true}">
           </button>
         </ng-template>

@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   PLATFORM_ID,
   Inject,
+  OnDestroy,
 } from '@angular/core';
 import { NgFor, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -23,6 +24,10 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { SelectModule } from 'primeng/select';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SearchComponent } from '../search/search.component';
+import { TranslatePipe } from '../../pipes/translate.pipe';
+import { LanguageService, Direction } from '../../services/language.service';
+import { TranslationService } from '../../services/translation.service';
+import { Subscription } from 'rxjs';
 
 interface Destination {
   id: number;
@@ -44,7 +49,6 @@ interface Partner {
   imports: [
     NgFor,
     CommonModule,
-    RouterLink,
     CarouselModule,
     ButtonModule,
     AnimateOnScrollModule,
@@ -55,11 +59,12 @@ interface Partner {
     SelectModule,
     DatePickerModule,
     SearchComponent,
+    TranslatePipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   featuredDestinations: Destination[] = [];
   partners: Partner[] = [];
   defaultImagePath = 'assets/images/default.jpg';
@@ -70,10 +75,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedDestination: Destination | null = null;
   destinations: { label: string; value: Destination }[] = [];
   minDate: Date = new Date();
+  direction: Direction = 'ltr';
+  private languageSubscription: Subscription | null = null;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private languageService: LanguageService,
+    private translationService: TranslationService
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
@@ -99,6 +109,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.loadDestinations();
     this.loadPartners();
     this.prepareDestinationsDropdown();
+
+    // Subscribe to language changes to update destinations
+    this.languageSubscription = this.languageService.language$.subscribe(() => {
+      this.prepareDestinationsDropdown();
+    });
+
+    // Subscribe to direction changes
+    this.subscriptions.add(
+      this.languageService.direction$.subscribe((dir) => {
+        this.direction = dir;
+      })
+    );
   }
 
   ngAfterViewInit() {
@@ -113,6 +135,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.resizeMasonryGrid();
       });
     }
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+    this.subscriptions.unsubscribe();
   }
 
   /**
@@ -258,7 +287,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   prepareDestinationsDropdown() {
     this.destinations = this.featuredDestinations.map((dest) => ({
-      label: `${dest.name}, ${dest.location}`,
+      label: `${this.translationService.translate(
+        dest.name
+      )}, ${this.translationService.translate(dest.location)}`,
       value: dest,
     }));
   }

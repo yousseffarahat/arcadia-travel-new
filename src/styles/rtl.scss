@@ -1,0 +1,84 @@
+/* RTL specific styles */
+
+/* General direction overrides */
+[dir="rtl"] {
+  /* Text alignment */
+  .text-left {
+    text-align: right !important;
+  }
+  
+  .text-right {
+    text-align: left !important;
+  }
+  
+  /* Margins and paddings */
+  .ml-auto {
+    margin-left: initial !important;
+    margin-right: auto !important;
+  }
+  
+  .mr-auto {
+    margin-right: initial !important;
+    margin-left: auto !important;
+  }
+  
+  /* Flexbox direction */
+  .flex-row {
+    flex-direction: row-reverse !important;
+  }
+  
+  /* Icons */
+  .pi-chevron-right:before {
+    content: "\e900"; /* PrimeNG left chevron code */
+  }
+  
+  .pi-chevron-left:before {
+    content: "\e901"; /* PrimeNG right chevron code */
+  }
+  
+  /* Menu positioning */
+  .p-menubar .p-menubar-root-list {
+    flex-direction: row-reverse;
+  }
+  
+  /* Search component */
+  .search-field label i {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+  
+  /* Carousel arrows */
+  .p-carousel .p-carousel-indicators {
+    flex-direction: row-reverse;
+  }
+  
+  /* Font adjustments for Arabic */
+  body {
+    font-family: 'Cairo', 'Poppins', sans-serif;
+  }
+}
+
+/* Specific component overrides */
+[dir="rtl"] {
+  .destination-overlay .destination-btn {
+    right: auto;
+    left: 1rem;
+  }
+  
+  .destination-title {
+    text-align: right;
+  }
+  
+  .feature-icon {
+    margin-right: 0;
+    margin-left: 1rem;
+  }
+  
+  .p-datepicker .p-datepicker-header .p-datepicker-title {
+    text-align: right;
+  }
+  
+  .p-select-panel .p-select-items {
+    text-align: right;
+  }
+} 

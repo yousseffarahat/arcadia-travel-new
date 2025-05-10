@@ -7,7 +7,7 @@
           formControlName="destination"
           [options]="destinations"
           optionLabel="label"
-          placeholder="Where are you going?"
+          [placeholder]="'Where are you going?' | translate"
           [filter]="true"
           filterBy="label"
           [showClear]="true"
@@ -22,7 +22,7 @@
           formControlName="dateRange"
           selectionMode="range"
           [minDate]="minDate"
-          placeholder="Select travel dates"
+          [placeholder]="'Select travel dates' | translate"
           [showIcon]="false"
           dateFormat="dd/mm/yy"
         ></p-datepicker>
@@ -36,12 +36,12 @@
           formControlName="guests" 
           [options]="guestOptions" 
           optionLabel="label"
-          placeholder="Number of Guests"
+          [placeholder]="'Number of Guests' | translate"
           [showClear]="false"
         ></p-select>
       </label>
     </div>
     
-    <button pButton type="button" (click)="search()" label="Contact Us" icon="pi pi-envelope" class="search-button"></button>
+    <button pButton type="button" (click)="search()" [label]="'Contact Us' | translate" icon="pi pi-envelope" class="search-button"></button>
   </form>
 </div> 

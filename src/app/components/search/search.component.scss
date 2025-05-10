@@ -1,13 +1,18 @@
 .search-container {
   background-color: white;
   border-radius: 24px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
   z-index: 10;
   position: relative;
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .search-form {
@@ -37,6 +42,13 @@
     padding: 0.5rem 1rem;
     width: 100%;
     height: 46px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+    
+    &:hover, &:focus-within {
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+      background-color: #f1f5f9;
+    }
     
     i {
       margin-right: 0.5rem;
@@ -103,6 +115,13 @@
   min-width: 120px;
   height: 46px;
   border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  }
   
   @media (max-width: 768px) {
     width: 100%;

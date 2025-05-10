@@ -8,6 +8,8 @@ import {
 } from '@angular/platform-browser';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { LanguageService } from './services/language.service';
+import { TranslationService } from './services/translation.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +25,7 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    LanguageService,
+    TranslationService,
   ],
 };

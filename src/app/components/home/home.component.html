@@ -2,8 +2,8 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="hero-title">Wanderlust Awaits</h1>
-      <h2 class="hero-subtitle">Genesis</h2>
+      <h1 class="hero-title">{{ 'Wanderlust Awaits' | translate }}</h1>
+      <h2 class="hero-subtitle">{{ 'Genesis' | translate }}</h2>
       <div class="hero-search">
         <app-search 
           [destinations]="destinations" 
@@ -16,20 +16,20 @@
   <!-- Main Content -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Escape to Your Dream Destinations</h2>
-      <p class="section-subtitle">Discover the world's most popular vacation spots and create unforgettable memories.</p>
+      <h2 class="section-title">{{ 'Escape to Your Dream Destinations' | translate }}</h2>
+      <p class="section-subtitle">{{ 'Discover the worlds popular vacation spots' | translate }}</p>
       <div class="masonry-grid">
         <div class="destination-card" enterClass="animate-fadein" leaveClass="animate-fadeout" *ngFor="let destination of featuredDestinations" (click)="openContactDialog(destination)">
           <div class="destination-image-container">
             <img [src]="destination.image" 
-                 [alt]="destination.name" 
+                 [alt]="destination.name | translate" 
                  class="destination-img" 
                  (error)="handleImageError($event)">
           </div>
           <div class="destination-overlay">
-            <div class="destination-title">{{ destination.name }}, {{ destination.location }}</div>
+            <div class="destination-title">{{ destination.name | translate }}, {{ destination.location | translate }}</div>
             <button class="destination-btn">
-              <span>&rarr;</span>
+              <span>{{ direction === 'rtl' ? '&larr;' : '&rarr;' }}</span>
             </button>
           </div>
         </div>
@@ -40,8 +40,8 @@
   <!-- Popular Destinations Section -->
   <section class="section destinations-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Escape to Top Vacation Destinations</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Discover the world's most popular vacation spots, from tropical beaches to vibrant cityscapes, perfect for creating unforgettable memories</p>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Escape to Top Vacation Destinations' | translate }}</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Discover popular vacation spots' | translate }}</p>
       
       <div pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">
         <p-carousel [value]="featuredDestinations" [numVisible]="3" [numScroll]="1" [circular]="true" [responsiveOptions]="[
@@ -65,12 +65,12 @@
             <div class="carousel-item">
               <div class="card">
                 <img [src]="destination.image" 
-                     [alt]="destination.name" 
+                     [alt]="destination.name | translate" 
                      class="card-img" 
                      (error)="handleImageError($event)">
                 <div class="card-content">
-                  <h3 class="card-title">{{ destination.name }}</h3>
-                  <p class="card-text">{{ destination.location }}</p>
+                  <h3 class="card-title">{{ destination.name | translate }}</h3>
+                  <p class="card-text">{{ destination.location | translate }}</p>
                 </div>
               </div>
             </div>
@@ -83,32 +83,32 @@
   <!-- Why Choose Us Section -->
   <section class="section why-us-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Why Choose Arcadia Travel</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Experience the difference with our premium travel services</p>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Why Choose Arcadia Travel' | translate }}</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Experience the difference' | translate }}</p>
       
       <div class="features">
         <div class="feature" pAnimateOnScroll enterClass="animate-fadeinleft" leaveClass="animate-fadeoutleft">
           <div class="feature-icon">
             <i class="pi pi-check-circle"></i>
           </div>
-          <h3 class="feature-title">Best Price Guarantee</h3>
-          <p class="feature-text">We offer competitive prices on our 100,000+ destinations with no hidden fees.</p>
+          <h3 class="feature-title">{{ 'Best Price Guarantee' | translate }}</h3>
+          <p class="feature-text">{{ 'Competitive prices' | translate }}</p>
         </div>
         
         <div class="feature" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">
           <div class="feature-icon">
             <i class="pi pi-heart"></i>
           </div>
-          <h3 class="feature-title">Personalized Experience</h3>
-          <p class="feature-text">Tailored travel experiences based on your preferences and interests.</p>
+          <h3 class="feature-title">{{ 'Personalized Experience' | translate }}</h3>
+          <p class="feature-text">{{ 'Tailored travel experiences' | translate }}</p>
         </div>
         
         <div class="feature" pAnimateOnScroll enterClass="animate-fadeinright" leaveClass="animate-fadeoutright">
           <div class="feature-icon">
             <i class="pi pi-clock"></i>
           </div>
-          <h3 class="feature-title">24/7 Support</h3>
-          <p class="feature-text">Our travel experts are available around the clock to assist you.</p>
+          <h3 class="feature-title">{{ '24/7 Support' | translate }}</h3>
+          <p class="feature-text">{{ 'Available around the clock' | translate }}</p>
         </div>
       </div>
     </div>
@@ -117,8 +117,8 @@
   <!-- Partners Section with Infinite Scroll -->
   <section class="partners-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">Our Trusted Partners</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">We collaborate with the world's leading travel and hospitality brands</p>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Our Trusted Partners' | translate }}</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'We collaborate with brands' | translate }}</p>
     </div>
     
     <div class="logos-container">
@@ -150,7 +150,7 @@
 </div>
 
 <p-dialog 
-  header="Contact Us" 
+  [header]="'Contact Us' | translate" 
   [(visible)]="contactDialogVisible" 
   [modal]="true" 
   [style]="{width: '450px'}"
@@ -159,7 +159,7 @@
   (onHide)="closeContactDialog()">
   <form [formGroup]="contactForm" class="contact-form">
     <div class="field">
-      <label for="destination">Destination</label>
+      <label for="destination">{{ 'Destination' | translate }}</label>
       <div class="input-wrapper">
         <p-select 
           id="destination"
@@ -168,16 +168,16 @@
           optionLabel="label"
           [filter]="true"
           filterBy="label"
-          placeholder="Select a destination"
+          [placeholder]="'Select a destination' | translate"
           [showClear]="true"
           styleClass="w-full">
         </p-select>
       </div>
-      <small class="p-error" *ngIf="contactForm.get('destination')?.invalid && contactForm.get('destination')?.touched">Please select a destination</small>
+      <small class="p-error" *ngIf="contactForm.get('destination')?.invalid && contactForm.get('destination')?.touched">{{ 'Please select a destination' | translate }}</small>
     </div>
 
     <div class="field">
-      <label for="dateRange">Travel Dates</label>
+      <label for="dateRange">{{ 'Travel Dates' | translate }}</label>
       <div class="input-wrapper">
         <p-datepicker 
           id="dateRange"
@@ -187,46 +187,46 @@
           [showButtonBar]="true"
           [showIcon]="true"
           [minDate]="minDate"
-          placeholder="Select travel dates"
+          [placeholder]="'Select travel dates' | translate"
           styleClass="w-full">
         </p-datepicker>
       </div>
-      <small class="p-error" *ngIf="contactForm.get('dateRange')?.invalid && contactForm.get('dateRange')?.touched">Please select travel dates</small>
+      <small class="p-error" *ngIf="contactForm.get('dateRange')?.invalid && contactForm.get('dateRange')?.touched">{{ 'Please select travel dates' | translate }}</small>
     </div>
     
     <div class="field">
-      <label for="travelers">Number of Guests</label>
+      <label for="travelers">{{ 'Number of Guests' | translate }}</label>
       <div class="input-wrapper">
         <input id="travelers" type="number" pInputText formControlName="travelers" min="1" max="10" class="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('travelers')?.invalid && contactForm.get('travelers')?.touched}">
       </div>
-      <small class="p-error" *ngIf="contactForm.get('travelers')?.invalid && contactForm.get('travelers')?.touched">Please enter number of guests</small>
+      <small class="p-error" *ngIf="contactForm.get('travelers')?.invalid && contactForm.get('travelers')?.touched">{{ 'Please enter number of guests' | translate }}</small>
     </div>
 
     <div class="field">
-      <label for="name">Name</label>
+      <label for="name">{{ 'Name' | translate }}</label>
       <input id="name" type="text" pInputText formControlName="name" class="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('name')?.invalid && contactForm.get('name')?.touched}">
-      <small class="p-error" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">Name is required</small>
+      <small class="p-error" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">{{ 'Name is required' | translate }}</small>
     </div>
 
     <div class="field">
-      <label for="email">Email</label>
+      <label for="email">{{ 'Email' | translate }}</label>
       <input id="email" type="email" pInputText formControlName="email" class="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}">
       <small class="p-error" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-        {{ contactForm.get('email')?.errors?.['required'] ? 'Email is required' : 'Please enter a valid email' }}
+        {{ contactForm.get('email')?.errors?.['required'] ? ('Email is required' | translate) : ('Please enter a valid email' | translate) }}
       </small>
     </div>
 
     <div class="field">
-      <label for="phone">Phone</label>
+      <label for="phone">{{ 'Phone' | translate }}</label>
       <div class="input-wrapper">
         <p-inputMask id="phone" formControlName="phone" mask="(999) 999-9999" placeholder="(555) 555-5555" styleClass="w-full" [ngClass]="{'ng-invalid ng-dirty': contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched}"></p-inputMask>
       </div>
-      <small class="p-error" *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">Phone number is required</small>
+      <small class="p-error" *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">{{ 'Phone number is required' | translate }}</small>
     </div>
   </form>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeContactDialog()"></button>
-    <button pButton pRipple label="Send" icon="pi pi-check" class="p-button-text" (click)="submitContactForm()" [disabled]="!contactForm.valid"></button>
+    <button pButton pRipple [label]="'Cancel' | translate" icon="pi pi-times" class="p-button-text" (click)="closeContactDialog()"></button>
+    <button pButton pRipple [label]="'Send' | translate" icon="pi pi-check" class="p-button-text" (click)="submitContactForm()" [disabled]="!contactForm.valid"></button>
   </ng-template>
 </p-dialog> 

@@ -1,8 +1,18 @@
-import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+  Input,
+} from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { DatePickerModule } from 'primeng/datepicker';
+import { TranslatePipe } from '../../pipes/translate.pipe';
+import { LanguageService } from '../../services/language.service';
+import { Subscription } from 'rxjs';
 
 interface Destination {
   id: number;
@@ -20,31 +30,67 @@ interface GuestOption {
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [ReactiveFormsModule, SelectModule, DatePickerModule, ButtonModule],
+  imports: [
+    ReactiveFormsModule,
+    SelectModule,
+    DatePickerModule,
+    ButtonModule,
+    TranslatePipe,
+  ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  providers: [TranslatePipe],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
   minDate: Date = new Date();
   @Input() destinations: { label: string; value: Destination }[] = [];
-  guestOptions: GuestOption[] = [
-    { label: '1 Guest', value: 1 },
-    { label: '2 Guests', value: 2 },
-    { label: '3 Guests', value: 3 },
-    { label: '4 Guests', value: 4 },
-    { label: '5 Guests', value: 5 },
-    { label: '6+ Guests', value: 6 },
-  ];
+  guestOptions: GuestOption[] = [];
+  private languageSubscription: Subscription | null = null;
 
   @Output() searchSubmitted = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private translatePipe: TranslatePipe,
+    private languageService: LanguageService
+  ) {
     this.searchForm = this.fb.group({
       destination: [null],
       dateRange: [null],
       guests: [{ label: '2 Guests', value: 2 }],
     });
+
+    this.updateGuestOptions();
+
+    // Listen for language changes to update guest options
+    if (this.languageService) {
+      this.languageSubscription = this.languageService.language$.subscribe(
+        () => {
+          this.updateGuestOptions();
+
+          // Update the current selection with the translated label
+          const currentValue = this.searchForm.get('guests')?.value?.value || 2;
+          const newOption = this.guestOptions.find(
+            (option) => option.value === currentValue
+          );
+          if (newOption) {
+            this.searchForm.get('guests')?.setValue(newOption);
+          }
+        }
+      );
+    }
+  }
+
+  updateGuestOptions() {
+    this.guestOptions = [
+      { label: this.translatePipe.transform('1 Guest'), value: 1 },
+      { label: this.translatePipe.transform('2 Guests'), value: 2 },
+      { label: this.translatePipe.transform('3 Guests'), value: 3 },
+      { label: this.translatePipe.transform('4 Guests'), value: 4 },
+      { label: this.translatePipe.transform('5 Guests'), value: 5 },
+      { label: this.translatePipe.transform('6+ Guests'), value: 6 },
+    ];
   }
 
   ngOnInit() {
@@ -79,6 +125,12 @@ export class SearchComponent implements OnInit {
           },
         },
       ];
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
     }
   }
 
