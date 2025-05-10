@@ -33,18 +33,23 @@ export class TranslationService {
         'Experience the difference with our premium travel services',
       'Best Price Guarantee': 'Best Price Guarantee',
       'Competitive prices':
-        'We offer competitive prices on our 100,000+ destinations with no hidden fees.',
+        'We offer competitive prices on over 100,000 destinations with no hidden fees.',
       'Personalized Experience': 'Personalized Experience',
       'Tailored travel experiences':
         'Tailored travel experiences based on your preferences and interests.',
       '24/7 Support': '24/7 Support',
       'Available around the clock':
-        'Our travel experts are available around the clock to assist you.',
+        'Our support team is available around the clock to assist you.',
+
+      // Reviews section
+      'What Our Travelers Say': 'What Our Travelers Say',
+      'Hear from our satisfied customers':
+        'Hear from our satisfied customers about their travel experiences',
 
       // Partners section
       'Our Trusted Partners': 'Our Trusted Partners',
       'We collaborate with brands':
-        "We collaborate with the world's leading travel and hospitality brands",
+        'We collaborate with the best brands in the travel industry to provide you with exceptional service.',
 
       // Contact dialog
       Name: 'Name',
@@ -145,12 +150,17 @@ export class TranslationService {
         'تجارب سفر مخصصة بناءً على تفضيلاتك واهتماماتك.',
       '24/7 Support': 'دعم على مدار الساعة',
       'Available around the clock':
-        'خبراء السفر لدينا متاحون على مدار الساعة لمساعدتك.',
+        'فريق الدعم لدينا متاح على مدار الساعة لمساعدتك.',
+
+      // Reviews section
+      'What Our Travelers Say': 'ما يقوله مسافرونا',
+      'Hear from our satisfied customers':
+        'اسمع من عملائنا الراضين عن تجارب سفرهم',
 
       // Partners section
       'Our Trusted Partners': 'شركاؤنا الموثوقون',
       'We collaborate with brands':
-        'نتعاون مع أفضل العلامات التجارية في مجال السفر والضيافة في العالم',
+        'نتعاون مع أفضل العلامات التجارية في صناعة السفر لنقدم لك خدمة استثنائية.',
 
       // Contact dialog
       Name: 'الاسم',

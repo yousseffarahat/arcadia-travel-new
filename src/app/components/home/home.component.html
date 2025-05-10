@@ -12,6 +12,40 @@
       </div>
     </div>
   </section>
+
+    <!-- Partners Section with Infinite Scroll -->
+    <section class="partners-section">
+      <div class="container">
+        <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Our Trusted Partners' | translate }}</h2>
+        <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'We collaborate with brands' | translate }}</p>
+      </div>
+      
+      <div class="logos-container">
+        <div class="logos-scroll" [ngClass]="{'rtl-scroll': direction === 'rtl'}">
+          <!-- First set of logos -->
+          <div class="logos-wrapper">
+            <div class="logo-item" *ngFor="let partner of partners">
+              <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
+              <p class="partner-name">{{ partner.name }}</p>
+            </div>
+          </div>
+          <!-- Second set of logos (exact duplicate) -->
+          <div class="logos-wrapper">
+            <div class="logo-item" *ngFor="let partner of partners">
+              <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
+              <p class="partner-name">{{ partner.name }}</p>
+            </div>
+          </div>
+          <!-- Third set for extra smoothness -->
+          <div class="logos-wrapper">
+            <div class="logo-item" *ngFor="let partner of partners">
+              <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
+              <p class="partner-name">{{ partner.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   
   <!-- Main Content -->
   <section class="section">
@@ -114,39 +148,72 @@
     </div>
   </section>
 
-  <!-- Partners Section with Infinite Scroll -->
-  <section class="partners-section">
+  <!-- Customer Reviews Section -->
+  <section class="section reviews-section">
     <div class="container">
-      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Our Trusted Partners' | translate }}</h2>
-      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'We collaborate with brands' | translate }}</p>
-    </div>
-    
-    <div class="logos-container">
-      <div class="logos-scroll" [ngClass]="{'rtl-scroll': direction === 'rtl'}">
-        <!-- First set of logos -->
-        <div class="logos-wrapper">
-          <div class="logo-item" *ngFor="let partner of partners">
-            <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
-            <p class="partner-name">{{ partner.name }}</p>
-          </div>
-        </div>
-        <!-- Second set of logos (exact duplicate) -->
-        <div class="logos-wrapper">
-          <div class="logo-item" *ngFor="let partner of partners">
-            <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
-            <p class="partner-name">{{ partner.name }}</p>
-          </div>
-        </div>
-        <!-- Third set for extra smoothness -->
-        <div class="logos-wrapper">
-          <div class="logo-item" *ngFor="let partner of partners">
-            <img [src]="partner.logo" [alt]="partner.name" class="partner-logo" (error)="handleImageError($event)">
-            <p class="partner-name">{{ partner.name }}</p>
-          </div>
-        </div>
+      <h2 class="section-title" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'What Our Travelers Say' | translate }}</h2>
+      <p class="section-subtitle" pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">{{ 'Hear from our satisfied customers' | translate }}</p>
+      
+      <div pAnimateOnScroll enterClass="animate-fadein" leaveClass="animate-fadeout">
+        <p-carousel [value]="reviews" 
+                   [numVisible]="3" 
+                   [numScroll]="1" 
+                   [circular]="true" 
+                   styleClass="reviews-carousel"
+                   [responsiveOptions]="[
+            {
+              breakpoint: '1024px',
+              numVisible: 3,
+              numScroll: 1
+            },
+            {
+              breakpoint: '768px',
+              numVisible: 2,
+              numScroll: 1
+            },
+            {
+              breakpoint: '560px',
+              numVisible: 1,
+              numScroll: 1
+            }
+          ]">
+          <ng-template let-review pTemplate="item">
+            <div class="review-item">
+              <div class="review-content">
+                <div class="reviewer-img-container">
+                  <img [src]="review.image" 
+                       [alt]="review.name" 
+                       class="reviewer-img" 
+                       (error)="handleImageError($event)">
+                </div>
+                <div class="review-info">
+                  <div class="review-header">
+                    <div class="reviewer-details">
+                      <h3 class="reviewer-name">{{ review.name }}</h3>
+                      <p class="reviewer-location">{{ review.location }}</p>
+                    </div>
+                    <div class="review-rating">
+                      <div class="stars">
+                        <span *ngFor="let i of [1, 2, 3, 4, 5]" class="star">
+                          <i class="pi" [ngClass]="{'pi-star-fill': i <= review.rating, 'pi-star': i > review.rating}"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-quote">
+                    <i class="pi pi-quote-left quote-icon"></i>
+                    <p class="review-text">{{ review.comment }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
       </div>
     </div>
   </section>
+
+
 </div>
 
 <!-- Scroll to Top Button -->

@@ -44,6 +44,15 @@ interface Partner {
   logo: string;
 }
 
+interface Review {
+  id: number;
+  name: string;
+  location: string;
+  image: string;
+  rating: number;
+  comment: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -69,6 +78,7 @@ interface Partner {
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   featuredDestinations: Destination[] = [];
   partners: Partner[] = [];
+  reviews: Review[] = [];
   defaultImagePath = 'assets/images/default.jpg';
   isBrowser: boolean;
   contactDialogVisible = false;
@@ -110,6 +120,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.loadDestinations();
     this.loadPartners();
+    this.loadReviews();
     this.prepareDestinationsDropdown();
 
     // Subscribe to language changes to update destinations
@@ -283,6 +294,56 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         id: 8,
         name: 'Emirates',
         logo: 'assets/images/plane.png',
+      },
+    ];
+  }
+
+  loadReviews() {
+    this.reviews = [
+      {
+        id: 1,
+        name: 'John Smith',
+        location: 'USA',
+        image: 'assets/images/istanbul.png',
+        rating: 5,
+        comment:
+          'Arcadia Travel made our honeymoon in Paris absolutely magical! Every detail was perfect.',
+      },
+      {
+        id: 2,
+        name: 'Maria Garcia',
+        location: 'Spain',
+        image: 'assets/images/rome.png',
+        rating: 5,
+        comment:
+          'Our family trip to Rome was unforgettable. The personalized itinerary was exactly what we wanted.',
+      },
+      {
+        id: 3,
+        name: 'Ahmed Hassan',
+        location: 'Egypt',
+        image: 'assets/images/newYork.png',
+        rating: 4,
+        comment:
+          'Great service and amazing destinations. Will definitely book with Arcadia again!',
+      },
+      {
+        id: 4,
+        name: 'Sophia Chen',
+        location: 'Singapore',
+        image: 'assets/images/santorini.png',
+        rating: 5,
+        comment:
+          'The attention to detail and customer service was exceptional. Highly recommended!',
+      },
+      {
+        id: 5,
+        name: 'David Wilson',
+        location: 'Australia',
+        image: 'assets/images/bali.png',
+        rating: 4,
+        comment:
+          'Our Bali trip was perfectly organized. The local guides were knowledgeable and friendly.',
       },
     ];
   }
