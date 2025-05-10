@@ -637,4 +637,28 @@ img {
       padding: 0;
     }
   }
+
+  /* Custom ScrollTop styling */
+  .custom-scrolltop {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: var(--primary-color-hover);
+    }
+    
+    .p-scrolltop-icon {
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+  }
+  
+  // RTL support for ScrollTop
+  [dir="rtl"] .custom-scrolltop {
+    right: auto;
+    left: 20px;
+  }
 } 

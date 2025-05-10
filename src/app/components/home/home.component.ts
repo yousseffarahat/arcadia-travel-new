@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { ScrollTopModule } from 'primeng/scrolltop';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -52,6 +53,7 @@ interface Partner {
     CarouselModule,
     ButtonModule,
     AnimateOnScrollModule,
+    ScrollTopModule,
     ReactiveFormsModule,
     DialogModule,
     InputTextModule,

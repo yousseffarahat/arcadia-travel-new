@@ -110,6 +110,9 @@ export class TranslationService {
       Feedback: 'Feedback',
       'Arcadia Travel. All rights reserved.':
         'Arcadia Travel. All rights reserved.',
+
+      // UI Elements
+      'Back to top': 'Back to top',
     },
     ar: {
       // Header
@@ -213,6 +216,9 @@ export class TranslationService {
       Feedback: 'ملاحظات',
       'Arcadia Travel. All rights reserved.':
         'أركاديا للسفر. جميع الحقوق محفوظة.',
+
+      // UI Elements
+      'Back to top': 'العودة إلى الأعلى',
     },
   };
 

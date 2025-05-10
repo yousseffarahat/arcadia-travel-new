@@ -149,6 +149,18 @@
   </section>
 </div>
 
+<!-- Scroll to Top Button -->
+<p-scrollTop 
+  [threshold]="200" 
+  styleClass="custom-scrolltop" 
+  [icon]="'pi pi-arrow-up'"
+  [target]="'window'"
+  [behavior]="'smooth'"
+  [showTransitionOptions]="'150ms'"
+  [hideTransitionOptions]="'150ms'"
+  [buttonAriaLabel]="'Back to top' | translate">
+</p-scrollTop>
+
 <p-dialog 
   [header]="'Contact Us' | translate" 
   [(visible)]="contactDialogVisible" 
