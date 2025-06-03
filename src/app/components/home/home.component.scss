@@ -1,7 +1,7 @@
 .hero {
   height: 100vh;
   min-height: 600px;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/assets/images/landing.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/assets/images/landing2.jpg') center/cover no-repeat;
   position: relative;
   display: flex;
   align-items: center;
@@ -18,6 +18,16 @@
   }
   
   @media (max-width: 768px) { min-height: 500px; }
+}
+
+.hero-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is important to cover the whole area without distorting the video */
+  z-index: -1; /* Ensure the video is behind the content */
 }
 
 .hero-content {
